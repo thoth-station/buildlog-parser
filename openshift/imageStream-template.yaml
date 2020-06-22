@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: buildlog-parser-imagestream
+  annotations:
+    description: This is Thoth Core - Build log parser ImageStream
+    openshift.io/display-name: "Thoth: Build log parser ImageStream"
+    version: 0.1.0
+    tags: poc,thoth,ai-stacks,buildlog-parser
+    template.openshift.io/documentation-url: https://github.com/Thoth-Station/
+    template.openshift.io/long-description: >
+      This template defines resources needed to deploy Thoth Build log parser
+    template.openshift.io/provider-display-name: Red Hat, Inc.
+    thoth-station.ninja/template-version: 0.1.0
+  labels:
+    template: buildlog-parser-imagestream
+    app: thoth
+    component: buildlog-parser
+
+objects:
+  - kind: ImageStream
+    apiVersion: image.openshift.io/v1
+    metadata:
+      annotations:
+        thoth-station.ninja/template-version: 0.1.0
+      labels:
+        app: thoth
+        component: buildlog-parser
+      name: buildlog-parser
+    spec:
+      name: latest
+      lookupPolicy:
+        local: true

@@ -1,0 +1,4 @@
+thoth-common
+thoth-analyzer
+attrs
+pyyaml
