@@ -19,7 +19,7 @@
 
 from base import BuildLogParserTestCase
 
-from thoth.buildlog import parse
+from thoth.buildlog_parser import parse
 
 
 class TestBuildLogParser(BuildLogParserParserCase):
