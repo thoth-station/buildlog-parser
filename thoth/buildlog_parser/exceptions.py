@@ -21,5 +21,3 @@
 
 class ThothBuildLogException(Exception):
     """A base class for implementing library specific exceptions."""
-
-

@@ -14,13 +14,14 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
+# type: ignore
 
 """Tests related to build log parsing."""
 
 from base import BuildLogParserTestCase
 
-from thoth.buildlog import parse
+from thoth.buildlog_parser import parse
 
 
-class TestBuildLogParser(BuildLogParserParserCase):
+class TestBuildLogParser(BuildLogParserTestCase):
     """Tests related to build logs parsing."""
