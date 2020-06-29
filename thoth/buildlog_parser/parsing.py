@@ -53,7 +53,7 @@ _MICROPIPENV_INSTALL_FAILED_FATAL_RE = re.compile(
 )
 
 
-def _parse_pipfile_lock(output_lines: List[str]) -> Optional[Dict[str, Any]]:
+def _parse_pipfile_lock(output_lines: List[str]) -> Any:
     """Parse Pipfile.lock as printed by micropipenv to stdout."""
     parsing = False
     pipfile_lock_str = ""
@@ -82,7 +82,7 @@ def _parse_pipfile_lock(output_lines: List[str]) -> Optional[Dict[str, Any]]:
         return None
 
 
-def _parse_thoth_config(output_lines: List[str]) -> Union[Optional[str], Dict[str, Any]]:
+def _parse_thoth_config(output_lines: List[str]) -> Any:
     """Parse Thoth's configuration file out of the log."""
     parsing = False
     thoth_config = []
@@ -123,7 +123,7 @@ def _parse_installation(output_lines: List[str]) -> List[Dict[str, Any]]:
 
         matched_collecting = _PIP_COLLECTING_RE.fullmatch(line)
         if matched_collecting:
-            package_entry = {
+            package_entry: Dict[str, Any] = {
                 "artifact": None,
                 "artifact_size": None,
                 "installation_log": None,
@@ -171,6 +171,7 @@ def _parse_adviser_id(output_lines: List[str]) -> Optional[str]:
             return line
 
     _LOGGER.warning("No adviser id found")
+    return None
 
 
 def _parse_s2i_builder_image(output_lines: List[str]) -> Optional[Dict[str, Any]]:
@@ -185,6 +186,7 @@ def _parse_s2i_builder_image(output_lines: List[str]) -> Optional[Dict[str, Any]
             }
 
     _LOGGER.warning("No s2i builder image found")
+    return None
 
 
 def _parse_thamos_version(output_lines: List[str]) -> Optional[str]:
@@ -195,6 +197,7 @@ def _parse_thamos_version(output_lines: List[str]) -> Optional[str]:
             return matched.group(1)
 
     _LOGGER.warning("No Thamos version identifier found")
+    return None
 
 
 def _parse_push_destination(output_lines: List[str]) -> Optional[Dict[str, Any]]:
@@ -281,7 +284,7 @@ def _post_process_result(result: Dict[str, Any]) -> Dict[str, Any]:
     if failed and result["info"]["push_successful"]:
         _LOGGER.error(
             "The container image was pushed even thought there were detected dependencies that were not installed: %r",
-            failed
+            failed,
         )
 
     return result

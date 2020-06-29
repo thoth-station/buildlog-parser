@@ -1,0 +1,159 @@
+{
+  "metadata": {
+    "analyzer": "thoth-buildlog-parser",
+    "analyzer_version": "0.0.0",
+    "arguments": {
+      "parse": {
+        "input_stream": "success_adviser_failed/log.txt",
+        "no_pretty": false,
+        "output": "success_adviser_failed/result.json"
+      },
+      "thoth-buildlog-parser": {
+        "metadata": null,
+        "verbose": false
+      }
+    },
+    "datetime": "2020-05-04T20:49:50.169018",
+    "distribution": {
+      "codename": "",
+      "id": "fedora",
+      "like": "",
+      "version": "31",
+      "version_parts": {
+        "build_number": "",
+        "major": "31",
+        "minor": ""
+      }
+    },
+    "document_id": null,
+    "duration": 0,
+    "hostname": "localhost.localdomain",
+    "os_release": {
+      "id": "fedora",
+      "name": "Fedora",
+      "platform_id": "platform:f31",
+      "redhat_bugzilla_product": "Fedora",
+      "redhat_bugzilla_product_version": "31",
+      "redhat_support_product": "Fedora",
+      "redhat_support_product_version": "31",
+      "version": "31 (Thirty One)",
+      "version_id": "31"
+    },
+    "python": {
+      "api_version": 1013,
+      "implementation_name": "cpython",
+      "major": 3,
+      "micro": 10,
+      "minor": 6,
+      "releaselevel": "final",
+      "serial": 0
+    },
+    "thoth_deployment_name": null,
+    "timestamp": 1588625390
+  },
+  "result": {
+    "failed": [],
+    "info": {
+      "adviser_run": true,
+      "provenance_check_run": false,
+      "push_destination": {
+        "image": "docker-registry.default.svc:5000/thoth-test-core/adviser",
+        "tag": "latest"
+      },
+      "push_successful": true,
+      "s2i_builder_image": {
+        "image": "quay.io/thoth-station/s2i-thoth-ubi8-py36",
+        "sha256": "e33e1bc465fecdb06fd6b96146e03903d71b5b9877524a7024ba9399a3068cfc"
+      },
+      "thamos_version": "0.9.4"
+    },
+    "installation": [],
+    "installation_successful": [],
+    "pipfile_lock": {
+      "_meta": {
+        "hash": {
+          "sha256": "86c287e4b8a9fa2e237a0f0e84e7ca62fa20041fb9335ff5fdf673a7ca489ea6"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+          "python_version": "3.6"
+        },
+        "sources": [
+          {
+            "name": "pypi",
+            "url": "https://pypi.org/simple",
+            "verify_ssl": true
+          }
+        ]
+      },
+      "default": {
+        "daiquiri": {
+          "hashes": [
+            "sha256:0d5bf9c5719fbca4928dc2a882c165cd2b5c81be28f7f1626ced04c1c6b4aae2",
+            "sha256:236183ba51f35f4ae0e23fd20119d0fa082995c08d77bd562dbc00ea8f504bf6"
+          ],
+          "index": "pypi",
+          "version": "==2.1.1"
+        },
+        "python-json-logger": {
+          "hashes": [
+            "sha256:b7a31162f2a01965a5efb94453ce69230ed208468b0bbc7fdfc56e6d8df2e281"
+          ],
+          "markers": "python_version >= '2.7'",
+          "version": "==0.1.11"
+        }
+      },
+      "develop": {}
+    },
+    "recovered": [],
+    "thoth_config": {
+      "host": "khemenu.thoth-station.ninja",
+      "managers": [
+        {
+          "name": "pipfile-requirements"
+        },
+        {
+          "configuration": {
+            "labels": [
+              "bot"
+            ]
+          },
+          "name": "update"
+        },
+        {
+          "name": "info"
+        },
+        {
+          "configuration": {
+            "assignees": [
+              "sesheta"
+            ],
+            "changelog_file": true,
+            "labels": [
+              "bot"
+            ],
+            "maintainers": [
+              "goern",
+              "fridex"
+            ]
+          },
+          "name": "version"
+        }
+      ],
+      "requirements_format": "pipenv",
+      "runtime_environments": [
+        {
+          "limit_latest_versions": 5,
+          "name": "rhel:8",
+          "operating_system": {
+            "name": "rhel",
+            "version": "8.0"
+          },
+          "python_version": "3.6",
+          "recommendation_type": "latest"
+        }
+      ],
+      "tls_verify": false
+    }
+  }
+}
