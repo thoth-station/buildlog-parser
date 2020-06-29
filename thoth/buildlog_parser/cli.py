@@ -47,7 +47,11 @@ def _print_version(ctx: click.Context, _, value: str):
 @click.group()
 @click.pass_context
 @click.option(
-    "-v", "--verbose", is_flag=True, envvar="THOTH_ADVISER_DEBUG", help="Be verbose about what's going on.",
+    "-v",
+    "--verbose",
+    is_flag=True,
+    envvar="THOTH_BUILDLOG_PARSER_DEBUG",
+    help="Be verbose about what's going on.",
 )
 @click.option(
     "--version",
@@ -60,13 +64,13 @@ def _print_version(ctx: click.Context, _, value: str):
 @click.option(
     "--metadata",
     type=str,
-    envvar="THOTH_ADVISER_METADATA",
+    envvar="THOTH_BUILDLOG_PARSER_METADATA",
     help="Metadata in a form of a JSON which are used for carrying additional context in Thoth deployment.",
 )
 def cli(ctx=None, verbose=False, metadata=None):
     """Thoth's build log command line interface."""
     if ctx:
-        ctx.auto_envvar_prefix = "THOTH_ADVISER"
+        ctx.auto_envvar_prefix = "THOTH_BUILDLOG_PARSER"
 
     if verbose:
         _LOGGER.setLevel(logging.DEBUG)
@@ -85,7 +89,7 @@ def cli(ctx=None, verbose=False, metadata=None):
     "-i",
     "input_stream",
     type=str,
-    envvar="THOTH_BUILDLOG_REQUIREMENTS",
+    envvar="THOTH_BUILDLOG_PARSER_REQUIREMENTS",
     required=False,
     default="-",
     show_default=True,
@@ -96,7 +100,7 @@ def cli(ctx=None, verbose=False, metadata=None):
     "--output",
     "-o",
     type=str,
-    envvar="THOTH_BUILDLOG_OUTPUT",
+    envvar="THOTH_BUILDLOG_PARSER_OUTPUT",
     default="-",
     show_default=True,
     help="Output file or remote API to print results to, in case of URL a POST request is issued.",
