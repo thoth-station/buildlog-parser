@@ -89,7 +89,7 @@ def cli(ctx=None, verbose=False, metadata=None):
     "-i",
     "input_stream",
     type=str,
-    envvar="THOTH_BUILDLOG_PARSER_REQUIREMENTS",
+    envvar="THOTH_BUILDLOG_PARSER_INPUT",
     required=False,
     default="-",
     show_default=True,
