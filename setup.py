@@ -1,16 +1,20 @@
+"""This file contains packaging information for buildlog-parser module."""
+
 import os
 import sys
 from setuptools import setup
-from setuptools.command.test import test as TestCommand
+from setuptools.command.test import test as test_command
 
 
 def get_install_requires():
+    """Fetch requirements from requirements file."""
     with open("requirements.txt", "r") as requirements_file:
         res = requirements_file.readlines()
         return [req.split(" ", maxsplit=1)[0] for req in res if req]
 
 
 def get_version():
+    """Fetch version information from init file."""
     with open(os.path.join("thoth", "buildlog_parser", "__init__.py")) as f:
         content = f.readlines()
 
@@ -22,10 +26,11 @@ def get_version():
 
 
 def read(fname):
+    """Read the file using absolue path."""
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 
-class Test(TestCommand):
+class Test(test_command):
     """Introduce test command to run testsuite using pytest."""
 
     _IMPLICIT_PYTEST_ARGS = [
@@ -43,15 +48,18 @@ class Test(TestCommand):
     user_options = [("pytest-args=", "a", "Arguments to pass into py.test")]
 
     def initialize_options(self):
+        """Initialize cli options."""
         super().initialize_options()
         self.pytest_args = None
 
     def finalize_options(self):
+        """Finalize cli options."""
         super().finalize_options()
         self.test_args = []
         self.test_suite = True
 
     def run_tests(self):
+        """Run module tests."""
         import pytest
 
         passed_args = list(self._IMPLICIT_PYTEST_ARGS)

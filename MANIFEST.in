@@ -1,0 +1,16 @@
+include *.lock
+include *.md
+include *.sh
+include *.toml
+include *.txt
+include *.yaml
+include LICENSE
+include OWNERS
+include Pipfile
+include mypy.ini
+recursive-include tests *.json
+recursive-include tests *.py
+exclude .coafile
+exclude tests/data/sample
+exclude tests/data/sample_error
+include thoth-buildlog-parser

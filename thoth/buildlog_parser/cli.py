@@ -107,7 +107,11 @@ def cli(ctx=None, verbose=False, metadata=None):
     metavar="OUTPUT",
 )
 def parse(
-    click_ctx: click.Context, *, output: str, no_pretty: bool = False, input_stream: str,
+    click_ctx: click.Context,
+    *,
+    output: str,
+    no_pretty: bool = False,
+    input_stream: str,
 ):
     """Parse the given build log and extract relevant information out of it."""
     parameters = locals()
