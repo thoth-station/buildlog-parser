@@ -20,8 +20,6 @@
 
 from base import BuildLogParserTestCase
 
-from thoth.buildlog_parser import parse
-
 
 class TestBuildLogParser(BuildLogParserTestCase):
     """Tests related to build logs parsing."""

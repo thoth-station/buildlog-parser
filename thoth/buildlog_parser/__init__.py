@@ -23,4 +23,4 @@ __author__ = "Fridolin Pokorny"
 __email__ = "fridolin@redhat.com"
 
 
-from .parsing import parse
+from .parsing import parse  # noqa F401
