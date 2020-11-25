@@ -1,0 +1,12 @@
+check:
+  - thoth-build
+  - thoth-pytest-py38
+release:
+  - upload-pypi-sesheta
+build:
+  base-image: quay.io/thoth-station/s2i-thoth-ubi8-py38:latest
+  build-stratergy: Source
+  registry: quay.io
+  registry-org: thoth-station
+  registry-project: buildlog-parser
+  registry-secret: thoth-station-thoth-pusher-secret
