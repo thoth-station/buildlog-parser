@@ -21,8 +21,11 @@
 import logging
 import sys
 import time
+from typing import Optional
 
 import click
+import json
+from jsonpath2.path import Path
 from thoth.analyzer import print_command_result
 from thoth.common import init_logging
 
@@ -106,22 +109,45 @@ def cli(ctx=None, verbose=False, metadata=None):
     help="Output file or remote API to print results to, in case of URL a POST request is issued.",
     metavar="OUTPUT",
 )
+@click.option(
+    "--jsonpath",
+    "-j",
+    type=str,
+    envvar="THOTH_BUILDLOG_PARSER_JSONPATH",
+    default=None,
+    help="A jsonpath describing path to buildlog when input is a JSON file.",
+    metavar="PATH",
+)
 def parse(
     click_ctx: click.Context,
     *,
     output: str,
     no_pretty: bool = False,
     input_stream: str,
+    jsonpath: Optional[str] = None,
 ):
     """Parse the given build log and extract relevant information out of it."""
     parameters = locals()
     parameters.pop("click_ctx")
 
     if input_stream == "-":
-        input_text = sys.stdin.read()
+        input_content = sys.stdin.read()
     else:
         with open(input_stream, "r") as input_f:
-            input_text = input_f.read()
+            input_content = input_f.read()
+
+    input_text = input_content
+    if jsonpath:
+        expr = Path.parse_str(jsonpath)
+        match = [m.current_value for m in expr.match(json.loads(input_content))]
+        if len(match) > 1:
+            _LOGGER.error("Matched multiple entries based on the jsonpath (%r): %r", jsonpath, match)
+            sys.exit(1)
+        if not match:
+            _LOGGER.error("No match for the provided jsonpath: %r", jsonpath)
+            sys.exit(1)
+
+        input_text = match[0]
 
     duration = time.monotonic()
     result = do_parse(input_text)

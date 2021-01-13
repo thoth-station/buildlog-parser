@@ -13,6 +13,7 @@ thoth-common = "*"
 thoth-analyzer = "*"
 attrs = "*"
 pyyaml = "*"
+jsonpath2 = "*"
 
 [requires]
 python_version = "3.8"
