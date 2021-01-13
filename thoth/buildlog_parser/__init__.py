@@ -18,7 +18,7 @@
 """Build log parsing."""
 
 __title__ = "thoth-buildlog-parser"
-__version__ = "0.0.1"
+__version__ = "0.1.0"
 __author__ = "Fridolin Pokorny"
 __email__ = "fridolin@redhat.com"
 
