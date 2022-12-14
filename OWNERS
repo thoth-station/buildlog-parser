@@ -1,11 +1,13 @@
 # See the OWNERS docs at https://go.k8s.io/owners
 
 approvers:
-  - fridex
+  - codificat
   - goern
   - sesheta
 reviewers:
-  - pacospace
+  - codificat
   - kpostoffice
   - harshad16
-  - bissenbay
+
+emeritus_approvers:
+  - fridex  # 2022
